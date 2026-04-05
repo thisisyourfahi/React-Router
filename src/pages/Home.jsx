@@ -7,10 +7,12 @@ const Home = () => {
     return (
         <div>
             <Nav></Nav>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-4 py-4 px-10">
                 <SideBar />
 
-                <Outlet />
+                <div className='border border-dotted rounded-md p-4 w-[70%]'>
+                    <Outlet />
+                </div>
             </div>
         </div>
     );
