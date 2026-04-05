@@ -12,13 +12,29 @@ import ToDos from './components/Main/ToDo/ToDos'
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: Home, 
+    Component: Home,
     children: [
-      {index: true, Component: HomeDefault},
-      {path: 'users', Component: Users},
-      {path: 'posts',  Component: Posts}, 
-      {path: 'comments', Component: Comments},
-      {path: 'todos', Component: ToDos}
+      { index: true, Component: HomeDefault },
+      {
+        path: 'users',
+        loader: () => fetch('https://jsonplaceholder.typicode.com/users'),
+        Component: Users
+      },
+      {
+        path: 'posts',
+        loader: () => fetch('https://jsonplaceholder.typicode.com/posts'),
+        Component: Posts
+      },
+      {
+        path: 'comments',
+        loader: () => fetch('https://jsonplaceholder.typicode.com/comments'),
+        Component: Comments
+      },
+      {
+        path: 'todos',
+        loader: () => fetch('https://jsonplaceholder.typicode.com/todos'),
+        Component: ToDos
+      }
     ]
   }
 ])
