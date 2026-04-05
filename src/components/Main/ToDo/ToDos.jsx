@@ -1,9 +1,8 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from 'react';
 
-const ToDos = () => {
-    const todos = useLoaderData();
-    console.log(todos);
+const ToDos = ({todosPromise}) => {
+    const todos = use(todosPromise);
+    console.log('todos:', todos);
     return (
         <div>
            <p>ToDos Section</p> 

@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+import { StrictMode, Suspense } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router'
@@ -8,6 +8,12 @@ import Users from './components/Main/Users/Users'
 import Posts from './components/Main/Posts/Posts'
 import Comments from './components/Main/Comments/Comments'
 import ToDos from './components/Main/ToDo/ToDos'
+import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+
+const usersPromise = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json());
+const postsPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
+const commentsPromise = fetch('https://jsonplaceholder.typicode.com/comments').then(res => res.json());
+const todosPromise = fetch('https://jsonplaceholder.typicode.com/todos').then(res => res.json());
 
 const router = createBrowserRouter([
   {
@@ -17,23 +23,27 @@ const router = createBrowserRouter([
       { index: true, Component: HomeDefault },
       {
         path: 'users',
-        loader: () => fetch('https://jsonplaceholder.typicode.com/users'),
-        Component: Users
+        element: <Suspense fallback={<LoadingSpinner />}>
+          <Users usersPromise={usersPromise}></Users>
+        </Suspense>
       },
       {
         path: 'posts',
-        loader: () => fetch('https://jsonplaceholder.typicode.com/posts'),
-        Component: Posts
+        element: <Suspense fallback={<LoadingSpinner />}>
+          <Posts postsPromise={postsPromise}></Posts>
+        </Suspense>
       },
       {
         path: 'comments',
-        loader: () => fetch('https://jsonplaceholder.typicode.com/comments'),
-        Component: Comments
+        element: <Suspense fallback={<LoadingSpinner />}>
+          <Comments commentsPromise={commentsPromise}></Comments>
+        </Suspense>
       },
       {
         path: 'todos',
-        loader: () => fetch('https://jsonplaceholder.typicode.com/todos'),
-        Component: ToDos
+        element: <Suspense fallback={<LoadingSpinner />}>
+          <ToDos todosPromise={todosPromise}></ToDos>
+        </Suspense>
       }
     ]
   }

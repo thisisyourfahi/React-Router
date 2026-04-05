@@ -1,8 +1,7 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from 'react';
 
-const Posts = () => {
-    const posts = useLoaderData();
+const Posts = ({postsPromise}) => {
+    const posts = use(postsPromise);
     console.log(posts);
     return (
         <div>

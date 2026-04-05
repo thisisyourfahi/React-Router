@@ -1,9 +1,8 @@
-import React from 'react';
-import { useLoaderData } from 'react-router';
+import React, { use } from 'react';
 
-const Comments = () => {
-    const comments = useLoaderData();
-    console.log(comments);
+const Comments = ({commentsPromise}) => {
+    const comments = use(commentsPromise);
+    console.log('comments:', comments);
     return (
         <div>
             <p>Comments section</p>
