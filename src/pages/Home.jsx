@@ -8,9 +8,11 @@ const Home = () => {
         <div>
             <Nav></Nav>
             <div className="container mx-auto flex items-center gap-4 py-4 px-10">
-                <SideBar />
+                <div className='sticky top-0 w-[20%] self-start'>
+                    <SideBar />
+                </div>
 
-                <div className='border border-dotted rounded-md p-4 w-[70%]'>
+                <div className='border border-dotted rounded-md p-4 w-[80%]'>
                     <Outlet />
                 </div>
             </div>
@@ -19,3 +21,4 @@ const Home = () => {
 };
 
 export default Home;
+

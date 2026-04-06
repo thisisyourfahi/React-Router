@@ -5,7 +5,7 @@ import { HiBuildingOffice } from 'react-icons/hi2';
 import { TbWorldWww } from 'react-icons/tb';
 
 const UserCard = ({ user }) => {
-    console.log(user);
+    // console.log(user);
     return (
         <div className='border border-dotted rounded-md p-4'>
             <div className='flex items-center gap-2'>

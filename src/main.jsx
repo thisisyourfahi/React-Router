@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: 'posts',
         element: <Suspense fallback={<LoadingSpinner />}>
-          <Posts postsPromise={postsPromise}></Posts>
+          <Posts postsPromise={postsPromise} usersPromise={usersPromise}></Posts>
         </Suspense>
       },
       {
