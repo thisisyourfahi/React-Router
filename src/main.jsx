@@ -9,6 +9,8 @@ import Posts from './components/Main/Posts/Posts'
 import Comments from './components/Main/Comments/Comments'
 import ToDos from './components/Main/ToDo/ToDos'
 import LoadingSpinner from './components/LoadingSpinner/LoadingSpinner'
+import PostCardDetails from './components/Main/Posts/PostCardDetails'
+import UserCardDetails from './components/Main/Users/UserCardDetails'
 
 const usersPromise = fetch('https://jsonplaceholder.typicode.com/users').then(res => res.json());
 const postsPromise = fetch('https://jsonplaceholder.typicode.com/posts').then(res => res.json());
@@ -26,6 +28,11 @@ const router = createBrowserRouter([
         element: <Suspense fallback={<LoadingSpinner />}>
           <Users usersPromise={usersPromise}></Users>
         </Suspense>
+      },
+      {
+        path: 'users/:id',
+        loader: ({params}) =>  fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
+        Component: UserCardDetails
       },
       {
         path: 'posts',

@@ -3,6 +3,7 @@ import { FaUserCircle } from 'react-icons/fa';
 import { FaPhoneAlt } from "react-icons/fa";
 import { HiBuildingOffice } from 'react-icons/hi2';
 import { TbWorldWww } from 'react-icons/tb';
+import { Link } from 'react-router';
 
 const UserCard = ({ user }) => {
     // console.log(user);
@@ -29,6 +30,10 @@ const UserCard = ({ user }) => {
                     <p>{user.company.name}</p>
                 </div>
             </div>
+
+            <Link to={`/users/${user.id}`}>
+                <button className='btn btn-primary btn-outline w-full mt-4'>Show Details</button>
+            </Link>
         </div>
     );
 };
