@@ -12,7 +12,7 @@ const UserCardDetails = () => {
         <div>
             <p className='underline mb-4'>User Details:</p>
             <div className='border border-dotted rounded-md p-4'>
-                <div className='flex items-center gap-2 mb-2'>
+                <div className='flex border border-dotted p-1 rounded-md items-center gap-2 mb-2'>
                     <FaUserCircle size={40} />
                     <div>
                         <h3 className="font-semibold">{user.name}</h3>

@@ -31,14 +31,27 @@ const router = createBrowserRouter([
       },
       {
         path: 'users/:id',
-        loader: ({params}) =>  fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
+        loader: ({ params }) => fetch(`https://jsonplaceholder.typicode.com/users/${params.id}`),
         Component: UserCardDetails
       },
       {
         path: 'posts',
         element: <Suspense fallback={<LoadingSpinner />}>
-          <Posts postsPromise={postsPromise} usersPromise={usersPromise}></Posts>
+          <Posts postsPromise={postsPromise}></Posts>
         </Suspense>
+      },
+      {
+        path: 'posts/:id',
+        loader: async ({ params }) => {
+          const postRes = await fetch(`https://jsonplaceholder.typicode.com/posts/${params.id}`);
+          const post = await postRes.json();
+
+          const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`);
+          const user = await userRes.json();
+
+          return { post, user }; // ✅ actual data
+        },
+        Component: PostCardDetails
       },
       {
         path: 'comments',
