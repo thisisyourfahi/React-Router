@@ -49,7 +49,7 @@ const router = createBrowserRouter([
           const userRes = await fetch(`https://jsonplaceholder.typicode.com/users/${post.userId}`);
           const user = await userRes.json();
 
-          return { post, user }; // ✅ actual data
+          return { post, user };
         },
         Component: PostCardDetails
       },
